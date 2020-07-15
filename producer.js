@@ -1,7 +1,10 @@
 const Queue = require("bull");
 
+// set queue name as testing
 const queue = new Queue("testing");
-// const queue = new Queue("testing", "redis://0.0.0.0:6379");
+
+// if you want to use custom redis address or port, use this format instead
+// const queue = new Queue("testing", "redis://0.0.0.0:6479");
 
 // query data yang dibutuhkan untuk create invoice
 

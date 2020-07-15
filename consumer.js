@@ -2,7 +2,10 @@ const Queue = require("bull");
 const cluster = require("cluster");
 const { cpus } = require("os");
 
+// set queue name as "testing"
 const queue = new Queue("testing");
+
+// if you want to use custom redis address or port, use this format instead
 // const queue = new Queue("testing", "redis://0.0.0.0:6379");
 
 async function delay() {
@@ -26,8 +29,8 @@ if (cluster.isMaster) {
   queue.process(async (job, done) => {
     console.log(`Processing job ${job.data.item} ${cluster.worker.id}`);
     await delay();
-    // proses generate PDF
-    // sampai pada proses menyimpan di temp location
+    
+    // di sini proses generate PDF (atau create invoice satuan, atau lain2)
 
     done(null, `Done, ${job.data.foo} - ${process.pid}`);
   });
